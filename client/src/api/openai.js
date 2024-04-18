@@ -1,14 +1,13 @@
 import axios from 'axios';
 
-// Configura la clave de API
-const apiKey = "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";
+const apiKey = "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";
 const apiUrl = 'https://api.openai.com/v1/completions';
 
 export async function sendMsgToOpenAI(message) {
   try {
     // Configura la solicitud a la API de OpenAI
     const requestData = {
-      model: 'text-davinci-003',
+      model: 'gpt-3.5-turbo-instruct',
       prompt: message,
       temperature: 0.7,
       max_tokens: 256,
@@ -18,6 +17,7 @@ export async function sendMsgToOpenAI(message) {
     };
 
     // Realiza la solicitud a la API de OpenAI usando Axios
+    console.log(requestData)
     const response = await axios.post(apiUrl, requestData, {
       headers: {
         'Content-Type': 'application/json',
@@ -26,9 +26,18 @@ export async function sendMsgToOpenAI(message) {
     });
 
     // Devuelve el texto generado
+    console.log(response.data)
     return response.data.choices[0].text;
+    
   } catch (error) {
-    console.error('Error al realizar la solicitud a la API de OpenAI:', error);
+    if (error.response) {
+      
+      console.error('Error al realizar la solicitud a la API de OpenAI:', error.response.data);
+    } else if (error.request) {
+      console.error('No se recibió respuesta de la API de OpenAI:', error.request);
+    } else {
+      console.error('Error al realizar la solicitud a la API de OpenAI:', error.message);
+    }
     throw new Error('Error al procesar la solicitud a OpenAI');
   }
 }
