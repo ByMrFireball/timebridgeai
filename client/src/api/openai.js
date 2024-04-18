@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const apiKey = "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";
+
 const apiUrl = 'https://api.openai.com/v1/completions';
 
 export async function sendMsgToOpenAI(message) {
