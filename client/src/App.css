@@ -120,6 +120,13 @@ body{
   padding-right: 1rem;
 }
 
+.imagenModal {
+  margin: 1rem;
+  width: 50px; /* Establece el ancho de la imagen */
+  height: auto; /* Permite que la altura se ajuste automáticamente */
+}
+
+
 .listaItems:nth-child(1)>.listaItemsImg {
   margin-right: 0.8rem;
 }
@@ -143,6 +150,10 @@ body{
   max-width: 70rem;
   height: calc(100vh - 20rem);
 
+}
+
+.parrafoModal{
+  margin: 1rem;
 }
 
 .chat{

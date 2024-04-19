@@ -50,9 +50,13 @@ export function TimeBridgeIA () {
 
     const [open, setOpen] = useState(false);
     const [imagenModal, setImagenModal] = useState(null);
+    const [modalTitle, setModalTitle] = useState("");
+    const [modalContent, setModalContent] = useState(null);
 
-    const handleClick = (imagen) => {
+    const handleClick = (imagen, title, content) => {
       setImagenModal(imagen);
+      setModalTitle(title);
+      setModalContent(content);
       setOpen(true);
     };
 
@@ -71,11 +75,49 @@ export function TimeBridgeIA () {
 
           </div>
           <div className="abajoCostado">
-            <button className="listaItems" onClick={() => handleClick(Casa)}><img src={Casa} alt="" className="listaItemsImg" />Perfil</button>
-            <button className="listaItems" onClick={() => handleClick(Cohete)}><img src={Cohete} alt="" className="listaItemsImg" />Mejora a pro</button>
+            <button className="listaItems" onClick={() => handleClick(Casa, "",{
+              content: (
+                <div>
+                  <h3 className="text-white text-2xl font-semibold"> Informacion del usuario</h3>
+                  {/* Aqui pondremos la informacion del usuario */}
 
-            <Modal open={open} onClose={() => setOpen(false)}>
-            {imagenModal && <img src={imagenModal} alt="" className="mx-auto text-white" />}
+                </div>
+              )
+            })}>
+              <img src={Casa} alt="" className="listaItemsImg" />Perfil
+            </button>
+
+
+
+            <button className="listaItems" onClick={() => handleClick(Cohete, "",{
+              content: (
+                <div>
+                  <h3 className="text-white text-2xl font-semibold">Mejora a Pro</h3>
+                  <p className='parrafoModal'>Valor en dinero colombiano: XXXX</p>
+                  <button onClick={() => setOpen(true)} className='bg-purple-700 hover:bg-purple-900 text-white font-bold py-2 px-4 rounded'>Comprar</button>
+                </div>
+              )
+            })}>
+              <img src={Cohete} alt="" className="listaItemsImg" />Mejora a pro
+              </button>
+
+
+
+            <Modal open={open} onClose={() => setOpen(false)} title={modalTitle} >
+              <div className='text-center w-56'>
+
+              {imagenModal && <img src={imagenModal} alt="" className="mx-auto text-white imagenModal" />}
+                <div className='mx-auto my-4 w-48'>
+              
+              {modalContent && (
+                  <>
+                      <h3 className="text-white text-xl font-semibold">{modalContent.title}</h3>
+                      {modalContent.content}
+                  </>
+              )}
+      
+                </div>
+              </div>
 
             </Modal>
 
