@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // Configura la clave de API
-const apiKey = "sk-proj-zkHX3ramqYUowdmKqFaeT3BlbkFJoLUqfb7jFBk0c2jXeG70";
+
 const apiUrl = 'https://api.openai.com/v1/completions';
 
 export async function sendMsgToOpenAI(message) {
