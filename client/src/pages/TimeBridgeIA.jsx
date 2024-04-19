@@ -10,6 +10,7 @@ import EnviarBtn from '../assets/send.svg';
 import IconoUsuario from '../assets/user-icon.png';
 import ChatgptLogo from '../assets/chatgptLogo.jpeg';
 import { sendMsgToOpenAI } from '../api/openai';
+import Modal from '../components/Modal';
 
 export function TimeBridgeIA () {
     const msgEnd = useRef(null);
@@ -47,6 +48,15 @@ export function TimeBridgeIA () {
 
     }
 
+    const [open, setOpen] = useState(false);
+    const [imagenModal, setImagenModal] = useState(null);
+
+    const handleClick = (imagen) => {
+      setImagenModal(imagen);
+      setOpen(true);
+    };
+
+
     return (
 
         <div className='App'>
@@ -61,10 +71,17 @@ export function TimeBridgeIA () {
 
           </div>
           <div className="abajoCostado">
-            <div className="listaItems"><img src={Casa} alt="" className="listaItemsImg" />Perfil</div>
-            <div className="listaItems"><img src={Cohete} alt="" className="listaItemsImg" />Mejora a pro</div>
+            <button className="listaItems" onClick={() => handleClick(Casa)}><img src={Casa} alt="" className="listaItemsImg" />Perfil</button>
+            <button className="listaItems" onClick={() => handleClick(Cohete)}><img src={Cohete} alt="" className="listaItemsImg" />Mejora a pro</button>
+
+            <Modal open={open} onClose={() => setOpen(false)}>
+            {imagenModal && <img src={imagenModal} alt="" className="mx-auto text-white" />}
+
+            </Modal>
+
 
           </div>
+
         </div>
         <div className="principal">
           <div className="chats text-xl font-medium">
