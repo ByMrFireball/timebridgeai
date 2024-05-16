@@ -6,6 +6,7 @@ import { RegistroUsuario } from './pages/registro'
 import FormRegistro from './components/FormRegistro'
 import { LoginUsuario } from './components/login'
 import {FormUsers} from './pages/FormUsers'
+import {Landing} from './pages/Landing'
 import './normal.css'
 import './App.css'
 
@@ -17,6 +18,7 @@ function App() {
         <Route path='/login-users' element={<FormUsers/>} />
         <Route path='/registered' element={<BackRegistrados/>} />
         <Route path='/registrate' element={<FormRegistro/>} />
+        <Route path='/timelanding' element={<Landing/>} />
         <Route path='/' element={<Navigate to="/login-users"/>} />
 
 
