@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {apikey} from '../constantes/apikey'
-
+console.log("hola")
 // Configura la clave de API
 const apiUrl = 'https://api.openai.com/v1/completions';
 
