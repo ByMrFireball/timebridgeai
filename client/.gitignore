@@ -12,6 +12,7 @@ constantes
 dist
 dist-ssr
 *.local
+timebridge_api/__pycache__
 
 # Editor directories and files
 .vscode/*

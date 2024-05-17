@@ -1,18 +1,37 @@
 import * as React from 'react'
+import { useEffect, useState } from "react"
 import {useForm} from 'react-hook-form'
 import {Link} from 'react-router-dom'
 import { InsertarUsuario } from '../api/registrados.api'
 import { useNavigate } from 'react-router-dom'
 import { dataEncrypt } from "../utils/data-encrypt"
-
+import { ObtenerUsuarios } from '../api/registrados.api'
  
 export function RegistroUsuario() {
-    const {register, handleSubmit, formState: {
-        errors
-    }, } = useForm();
+    const {register, handleSubmit, formState: {errors}, } = useForm();
+    
+    const [userData, setUserData] = useState([]);
+
     const navigate = useNavigate()
 
+    useEffect(() => {
+        async function loadUsers() {
+          const users = await ObtenerUsuarios();
+          const datos = users.data;
+          setUserData(datos);
+        }
+    
+        loadUsers();
+    }, []);
+    
     const onSubmit = handleSubmit(async data => {
+        console.log(data)
+        const userExists = userData.some(user => {
+            return user.email == data.email;
+        });
+        if (userExists) {
+            alert("correo ya en uso")
+        }else{
             if (data.contraseña_actual == data.pass2){
                 // delete pass2 para procesar datos
                 delete data.pass2
@@ -23,7 +42,8 @@ export function RegistroUsuario() {
             }else{
                 alert("Las contraseñas no coinciden");
             }
-        })
+        }}
+    )
 
     return(
         <div className='bg-black px-10 py-20 rounded-3xl border-2 border-black text-white' >

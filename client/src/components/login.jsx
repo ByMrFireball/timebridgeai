@@ -18,7 +18,6 @@ export function LoginUsuario() {
       const res = await ObtenerUsuarios();
       const datos = res.data;
       setUserData(datos);
-        console.log("Datos de userData:", datos);
 
     }
 
@@ -44,6 +43,7 @@ export function LoginUsuario() {
         navigate('/timebridge')
     } else {
         console.log("Usuario no válido");
+        alert("usuario o contraseña invalida")
         // Realizar acciones cuando el usuario no es válido
     }
 })
@@ -54,7 +54,7 @@ export function LoginUsuario() {
             <form onSubmit={onSubmit} className='mt-8 text-white '>
                 <div>
                     <label className='text-xl text-lg font-medium'>Correo</label>
-                    <input {...register("email", {required:true})} className='w-full border-2 border-purple-700 rounded-xl p-5 mt-2 bg-transparent text-white text-xl' type="text" placeholder='Ingresa tu correo' name='email' id='email'/>
+                    <input {...register("email", {required:true})} className='w-full border-2 border-purple-700 rounded-xl p-5 mt-2 bg-transparent text-white text-xl' type="email" placeholder='Ingresa tu correo' name='email' id='email'/>
                 </div>
                 <div>
                 <label className=' text-xl text-lg font-medium'>Contraseña</label>
